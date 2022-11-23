@@ -1,0 +1,42 @@
+﻿@model SupplyChain.Models.Entrada
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row mt-5 d-flex justify-content-center">
+    <div class="col-md-4">
+        <div class="card-header text-center text-light bg-dark rounded-top border border-dark">
+            <h3>Nova entrada</h3>
+        </div>
+
+        <div class="card-body text-light bg-dark rounded-bottom border border-dark">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Quantidade" class="control-label"></label>
+                    <input asp-for="Quantidade" class="form-control text-light" style="background-color: #18171E" />
+                    <span asp-validation-for="Quantidade" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Local" class="control-label"></label>
+                    <input asp-for="Local" class="form-control text-light" style="background-color: #18171E" />
+                    <span asp-validation-for="Local" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MercadoriaId" class="control-label"></label>
+                    <select asp-for="MercadoriaId" class="form-control text-light" style="background-color: #18171E" asp-items="ViewBag.MercadoriaId"></select>
+                    <span asp-validation-for="MercadoriaId" class="text-danger"></span>
+                </div>
+                <div class="form-group d-flex flex-column bd-highlight mt-3">
+                    <input type="submit" value="Criar" class="btn btn-primary" />
+                    <input type="Button" class="btn btn-danger mt-2" value="Cancelar" onclick="location.href='@Url.Action("Index", "Entrada")'" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

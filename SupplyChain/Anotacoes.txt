@@ -1,0 +1,70 @@
+﻿A MStarSupply é uma importante empresa de logística do Rio de Janeiro. Com uma vasta carteira 
+de clientes, a empresa decidiu implantar um sistema de Supply Chain para aumentar a qualidade e 
+eficiência nos seus processos. Já existe um controle feito em Excel, porém, este cadastro está sempre 
+obsoleto por não existir um sistema centralizado de controle de saída e entrada de mercadorias.
+
+A empresa contratou então a Morning Star para desenvolver um sistema online onde serão 
+cadastrados os tipos de mercadorias e as entradas e saídas das mesmas.
+
+O sistema deve possuir as seguintes funcionalidades:
+1. Gerenciamento das mercadorias;
+2. Gerenciamento de entrada e saída de mercadorias;
+3. Tela para visualização das entradas e saídas por mês de cada mercadoria em formato de gráfico;
+4. Exportar relatório mensal com todas as entradas e saídas de todas as mercadorias no formato PDF.
+
+Arquitetura: MVC.
+Frameworks: JQuery e BootStrap.
+Banco de dados: da sua escolha.
+
+Os seguintes pontos devem ser seguidos:
+
+1. Os dados entrados devem ser validados no cliente, ou seja, não devem ser enviados dados ao 
+servidor sem já terem sido validados em javascript ou algum componente de validação. Validar 
+implica em não deixar o usuário enviar os dados com campos em branco no formulário, não 
+deixar o usuário digitar caracteres inválidos na submissão da data, etc.
+
+2. O sistema deve ser desenvolvido em ASP.NET MVC 4 ou superior utilizando a linguagem C#.
+
+3. As informações das mercadorias e suas entradas e saídas devem ser armazenados em um banco 
+de dados.
+
+4. O framework front-end BootStrap deve ser utilizado.
+
+5. No cadastro de uma nova mercadoria, devem ser salvos o nome, número de registro, o 
+fabricante, o tipo e a descrição da mesma. O objetivo dessa tela simples é persistir no banco de 
+dados a mercadoria cadastrada.
+Mercadoria {
+	Id: int
+	Nome: string
+	NumeroRegistro: string
+	Fabricante: string
+	Tipo: string
+	Descricao: string
+}
+
+6. O cadastro da entrada deve conter a quantidade, a data e hora, o local e um DropDownList com 
+todas as mercadorias já cadastradas. Na tabela de Entrada no banco de dados, deverá ser salva 
+a mercadoria selecionada no DropDown (select).
+Entrada {
+	Id: int
+	Quantidade: int
+	DataHora: DateTime
+	Local: string
+	Mercadoria: Mercadoria
+}
+
+7. Por último, o cadastro da saída deverá conter a quantidade, a data e hora, o local e um 
+DropDownList com todas as mercadorias já cadastradas. Na tabela de Saída no banco de dados, 
+deverá ser salva a mercadoria selecionada no DropDown.
+Saida {
+	Id: int
+	Quantidade: int
+	DataHora: DateTime
+	Local: string
+	Mercadoria: Mercadoria
+}
+
+8. O Script de criação do seu banco deverá ser apresentado.
+
+9. Qualquer funcionalidade extra será levada em consideração na avaliação do case, como por 
+exemplo, verificação da disponibilidade de cada mercadoria, relatórios gerenciais, etc.

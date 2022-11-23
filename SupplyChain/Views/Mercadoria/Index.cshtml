@@ -1,0 +1,55 @@
+﻿@model IEnumerable<SupplyChain.Models.Mercadoria>
+
+@{
+    ViewData["Title"] = "Mercadorias";
+}
+
+<h1 class="text-light">Mercadorias</h1>
+
+<div class="d-flex flex-row-reverse bd-highlight mb-4">
+    <input type="Button" class="btn btn-dark" value="Adicionar nova mercadoria" onclick="location.href='@Url.Action("Create", "Mercadoria")'" />
+</div>
+
+<table class="table table-striped table-dark">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroRegistro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fabricante)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumeroRegistro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fabricante)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tipo)
+                </td>
+                <td>
+                    <a class="p-1" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square text-warning"></i></a>
+                    <a class="p-1" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-info-square text-info"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash text-danger"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

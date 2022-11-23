@@ -1,0 +1,28 @@
+﻿@model SupplyChain.Models.Entrada
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="row mt-5 d-flex justify-content-center text-light">
+    <div class="col-md-4 container-fluid text-center">
+        <div class="card-header d-flex justify-content-between bg-dark rounded-top border-bottom border-light">
+            <h4>Tem certeza de que deseja excluir?</h4>
+        </div>
+
+        <div class="card-body bg-dark rounded-bottom border border-dark">
+            <div class="card-header d-flex justify-content-between bg-dark">
+                <div class="container-fluid text-center">
+                    <h3>Entrada de @Html.DisplayFor(model => model.Quantidade) @Html.DisplayFor(model => model.Mercadoria.Nome)</h3>
+                    <h6>@Html.DisplayFor(model => model.Local) - @Html.DisplayFor(model => model.DataHora)</h6>
+                </div>
+            </div>
+
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+                <input type="submit" value="Excluir" class="btn btn-danger" />
+                <input type="Button" value="Voltar" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Entrada")'" />
+            </form>
+        </div>
+    </div>
+</div>

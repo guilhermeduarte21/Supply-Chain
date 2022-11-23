@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="11/22/2022 19:06:31" ReportInfo.Modified="11/22/2022 19:45:58" ReportInfo.CreatorVersion="2022.3.11.0">
+  <Dictionary>
+    <SQLiteDataConnection Name="Connection" ConnectionString="rijcmlq73pMBZrBokyLacTiVlRvTOPQCAlkA8bTNwTnBD7vVItGPHqF2lw50DXSKdUs4ZzFo6pqNZU37VLOzBAY9eaJtQ==">
+      <TableDataSource Name="Mercadorias" DataType="System.Int32" Enabled="true" TableName="Mercadorias">
+        <Column Name="Id" DataType="System.Int64"/>
+        <Column Name="Nome" DataType="System.String"/>
+        <Column Name="NumeroRegistro" DataType="System.String"/>
+        <Column Name="Fabricante" DataType="System.String"/>
+        <Column Name="Tipo" DataType="System.String"/>
+        <Column Name="Descricao" DataType="System.String"/>
+        <Column Name="QuantidadeEstoque" DataType="System.Int64"/>
+      </TableDataSource>
+      <TableDataSource Name="Saidas" DataType="System.Int32" Enabled="true" TableName="Saidas">
+        <Column Name="Id" DataType="System.Int64"/>
+        <Column Name="DataHora" DataType="System.String"/>
+        <Column Name="Local" DataType="System.String"/>
+        <Column Name="MercadoriaId" DataType="System.Int64"/>
+        <Column Name="Quantidade" DataType="System.Int64"/>
+      </TableDataSource>
+      <TableDataSource Name="Entradas" DataType="System.Int32" Enabled="true" TableName="Entradas">
+        <Column Name="Id" DataType="System.Int64"/>
+        <Column Name="DataHora" DataType="System.String"/>
+        <Column Name="Local" DataType="System.String"/>
+        <Column Name="MercadoriaId" DataType="System.Int64"/>
+        <Column Name="Quantidade" DataType="System.Int64"/>
+      </TableDataSource>
+    </SQLiteDataConnection>
+    <Relation Name="Mercadorias_Entradas" ParentDataSource="Mercadorias" ChildDataSource="Entradas" ParentColumns="Id" ChildColumns="MercadoriaId" Enabled="true"/>
+    <Relation Name="Mercadorias_Saidas" ParentDataSource="Mercadorias" ChildDataSource="Saidas" ParentColumns="Id" ChildColumns="MercadoriaId" Enabled="true"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="37.8">
+      <TextObject Name="Text20" Left="9.45" Width="699.3" Height="28.35" Text="Relatorio de mercadorias" HorzAlign="Center" VertAlign="Center" Font="Arial, 16pt, style=Bold"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="41.8" Width="718.2" Height="75.6" Fill.Color="DarkGray" StartNewPage="true" DataSource="Mercadorias">
+      <TextObject Name="Text4" Top="56.7" Width="141.75" Height="18.9" Text="Numero do registro:" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text3" Left="113.4" Top="56.7" Width="198.45" Height="18.9" Text="[Mercadorias.NumeroRegistro]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text2" Width="66.15" Height="18.9" Text="Nome:" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text1" Left="56.7" Width="255.15" Height="18.9" Text="[Mercadorias.Nome]" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text6" Left="519.75" Width="85.05" Height="18.9" Text="Fabricante:" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text5" Left="604.8" Width="113.4" Height="18.9" Text="[Mercadorias.Fabricante]" Font="Arial, 10pt"/>
+      <TextObject Name="Text8" Left="519.75" Top="18.9" Width="47.25" Height="18.9" Text="Tipo:" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text7" Left="557.55" Top="18.9" Width="160.65" Height="18.9" Text="[Mercadorias.Tipo]" Font="Arial, 10pt"/>
+      <DataBand Name="Data2" Top="163.2" Width="718.2" Height="37.8">
+        <TextObject Name="Text19" Left="623.7" Top="9.45" Width="94.5" Height="18.9" Text="[Mercadorias.QuantidadeEstoque]" Font="Arial, 10pt"/>
+        <TextObject Name="Text17" Left="75.6" Top="18.9" Width="151.2" Height="18.9" Text="[Entradas.DataHora]" Font="Arial, 10pt"/>
+        <TextObject Name="Text11" Left="226.8" Top="18.9" Width="75.6" Height="18.9" Text="[Entradas.Quantidade]" Font="Arial, 10pt"/>
+        <TextObject Name="Text18" Top="18.9" Width="75.6" Height="18.9" Text="[Entradas.Local]" Font="Arial, 10pt"/>
+        <TextObject Name="Text16" Left="311.85" Top="18.9" Width="75.6" Height="18.9" Text="[Saidas.Local]" Font="Arial, 10pt"/>
+        <TextObject Name="Text13" Left="538.65" Top="18.9" Width="75.6" Height="18.9" Text="[Saidas.Quantidade]" Font="Arial, 10pt"/>
+        <TextObject Name="Text15" Left="387.45" Top="18.9" Width="151.2" Height="18.9" Text="[Saidas.DataHora]" Font="Arial, 10pt"/>
+        <TextObject Name="Text21" Width="75.6" Height="18.9" Text="Local" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text22" Left="75.6" Width="151.2" Height="18.9" Text="Data e Hora" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text23" Left="226.8" Width="75.6" Height="18.9" Text="Quantidade" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text24" Left="311.85" Width="75.6" Height="18.9" Text="Local" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text25" Left="387.45" Width="151.2" Height="18.9" Text="Data e Hora" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text26" Left="538.65" Width="75.6" Height="18.9" Text="Quantidade" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <DataHeaderBand Name="DataHeader1" Top="121.4" Width="718.2" Height="37.8">
+          <TextObject Name="Text12" Top="9.45" Width="302.4" Height="18.9" Text="Entradas" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TextObject Name="Text14" Left="311.85" Top="9.45" Width="302.4" Height="18.9" Text="Saidas" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+          <TextObject Name="Text10" Left="623.7" Top="9.45" Width="94.5" Height="18.9" Text="Estoque" Font="Arial, 10pt, style=Bold"/>
+        </DataHeaderBand>
+      </DataBand>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="205" Width="718.2" Height="18.9"/>
+  </ReportPage>
+</Report>

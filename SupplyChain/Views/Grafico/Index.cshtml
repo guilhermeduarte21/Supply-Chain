@@ -1,0 +1,62 @@
+﻿<title>
+    @ViewData["Title"] - Grafico
+</title>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', { 'packages': ['corechart', 'bar'] });
+    google.charts.setOnLoadCallback(CarregarDados);
+
+    function CarregarDados() {
+        $.ajax({
+            url: '@Url.Action("EntradasSaidasMercadorias", "Grafico")',
+            data: {dias: 360},
+            dataType: 'json',
+            type: 'GET',
+            error: function (xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+                toastr.error(err.message);
+            },
+            success: function (data) {
+                GraficoEntradasSaidasMercadoria(data);
+                return false;
+            }
+        });
+
+        return false;
+    }
+
+    function GraficoEntradasSaidasMercadoria(data) {
+        var dataArray = [['Mercadoria', 'Entradas', 'Saidas']];
+
+        $.each(data, function (i, item){
+            dataArray.push([item.mercadoria, parseInt(item.entradas), parseInt(item.saidas)]);         
+        });
+
+       
+        
+        var data = google.visualization.arrayToDataTable(dataArray);
+
+        var options = 
+        {
+            hAxis: {
+                title: 'Mercadorias'
+            },
+            vAxis: {
+                title: 'Entradas e Saidas'
+            },
+            bar: {groupWidth: '10%'},
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div_column'));
+
+        chart.draw(data, options);
+    }
+</script>
+
+<div class="row g-3">
+    <div class="card-body">
+        <h3 class="text-light">Entradas e saídas de mercadorias</h3>
+        <div id="chart_div_column" style="height: 500px; width: auto;"></div>
+    </div>
+</div>

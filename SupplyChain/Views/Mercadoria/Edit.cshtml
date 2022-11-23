@@ -1,0 +1,54 @@
+﻿@model SupplyChain.Models.Mercadoria
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="row mt-5 d-flex justify-content-center">
+    <div class="col-md-4">
+        <div class="card-header text-center text-light bg-dark rounded-top border border-dark">
+            <h3>Editar mercadoria</h3>
+        </div>
+
+        <div class="card-body text-light bg-dark rounded-bottom border border-dark">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="Nome" class="control-label"></label>
+                    <input asp-for="Nome" class="form-control text-light" style="background-color: #18171E" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumeroRegistro" class="control-label"></label>
+                    <input asp-for="NumeroRegistro" class="form-control text-light" style="background-color: #18171E" />
+                    <span asp-validation-for="NumeroRegistro" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Fabricante" class="control-label"></label>
+                    <input asp-for="Fabricante" class="form-control text-light" style="background-color: #18171E" />
+                    <span asp-validation-for="Fabricante" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Tipo" class="control-label"></label>
+                    <input asp-for="Tipo" class="form-control text-light" style="background-color: #18171E" />
+                    <span asp-validation-for="Tipo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Descricao" class="control-label"></label>
+                    <input asp-for="Descricao" class="form-control text-light" style="background-color: #18171E" />
+                    <span asp-validation-for="Descricao" class="text-danger"></span>
+                </div>
+                <input type="hidden" asp-for="QuantidadeEstoque" />
+                <div class="form-group d-flex flex-column bd-highlight mt-3">
+                    <input type="submit" value="Salvar" class="btn btn-primary" />
+                    <input type="Button" class="btn btn-danger mt-2" value="Cancelar" onclick="location.href='@Url.Action("Index", "Mercadoria")'"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

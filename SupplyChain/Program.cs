@@ -1,4 +1,23 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using SupplyChain.Data;
+using SupplyChain.Repositories;
+using SupplyChain.Repositories.Interfaces;
+using SupplyChain.Services;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(connectionString));
+
+FastReport.Utils.RegisteredObjects.AddConnection(typeof(FastReport.Data.SQLiteDataConnection));
+
+builder.Services.AddTransient<IMercadoriaRepository, MercadoriaRepository>();
+builder.Services.AddTransient<IEntradaRepository, EntradaRepository>();
+builder.Services.AddTransient<ISaidaRepository, SaidaRepository>();
+
+builder.Services.AddScoped<GraficoEntradaSaidaMercadoriaServices>();
+builder.Services.AddScoped<RelatorioMercadoriasServices>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -16,12 +35,14 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseFastReport();
+
 app.UseRouting();
 
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Mercadoria}/{action=Index}/{id?}");
 
 app.Run();
